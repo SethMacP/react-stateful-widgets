@@ -26,11 +26,12 @@ export default function Squares() {
   // so the value of 'activeSquare' should be null.
 //start of my code
   const [ squares , setSquares ] = useState(listOfSquareIds);
+
   const [ activeSquare , setActiveSquare ] = useState(null);
-  // console.log( "squares" , squares );
-  //  console.log( "setSquares" , setSquares );
-  // console.log( "activeSquare" , activeSquare );
-  //  console.log( "setActiveSquare" , setActiveSquare );
+  console.log( "squares" , squares );
+   console.log( "setSquares" , setSquares );
+  console.log( "activeSquare" , activeSquare );
+   console.log( "setActiveSquare" , setActiveSquare );
 
 
   const getClassName = id => {
@@ -38,18 +39,8 @@ export default function Squares() {
     // It should return a string containing the class name of 'active', if the id passed
     // as the argument matches the active square in state, empty string otherwise.
     // Right-click and "inspect element" on the square to see its effect.
-    //start
-  document.getElementsById('sqA')
-    (id === activeSquare ? 'active' : '');
-    if (id === activeSquare){
-      setActiveSquare(squares);
-      return 'active'
-    } else{
-      return ""
-    }
-    console.log(squares)
-    console.log(activeSquare)
-    //end 
+   return (activeSquare === id ? ' active' : '');
+  
     
   };
 
@@ -57,7 +48,13 @@ export default function Squares() {
     // This is a helper used inside an _inlined_ click handler (see below).
     // Set the id argument to become the active id in state
     // (unless it already is, in which case we should reset
-    // the currently active square id back to initial state).
+    // the currently active square id back to initial state).    
+    console.log(id);
+    console.log(squares)
+    
+    return (id !== activeSquare ? setActiveSquare(id) : setActiveSquare(null))
+    
+
   };
 
   return (
@@ -68,7 +65,7 @@ export default function Squares() {
           // Nasty bug! We should map over a slice of state, instead of 'listOfSquareIds'.
           // We might say: "it works, though!" But if the list of squares is not state,
           // we could never add squares, change squares or remove squares in the future. Fix!
-          listOfSquareIds.map(id =>
+          squares.map(id =>
             <div
               id={id}
               key={id}
