@@ -29,6 +29,10 @@ export default function Programmers() {
   //x The programmers list on the one hand, and the id of the featured programmer on the other.
   const [ programmer, setProgrammer ] = useState(listOfAwesome);
   const [ featured, setFeatured ] = useState(null);
+  console.log("programmer " , programmer);
+  // console.log("setprogrammer", setProgrammer);
+  console.log("featured", featured);
+  // console.log("setFeatured", setFeatured);
 
   const getNameOfFeatured = () => {
     // Leave this for last!
@@ -36,12 +40,19 @@ export default function Programmers() {
     // It's going to utilize both slices of state to return the _name_ of the featured dev.
     // The beauty of closures is that we can "see" both slices of state from this region
     // of the program, without needing to inject the information through arguments.
+     programmer.forEach((ele) => {
+      if (featured === ele.id){
+        return ele.name
+      }else {
+        return null}
+    })
+    
   };
 
   const style = {
     fontSize: '1.5em',
     marginTop: '0.5em',
-    color: 'royalblue', // 🤔 color turns to gold, when celebrating
+    color: (featured >=1 ? 'gold' : 'royalblue'), // 🤔 color turns to gold, when celebrating
   };
 
   return (
@@ -54,7 +65,7 @@ export default function Programmers() {
           we could never add or edit programmers in the future. The list would be a static thing." */
           programmer.map(dev =>
             <div className='programmer' key={dev.id}>
-              {dev.name} <button onClick={() => { /* in here set the featured id to be dev.id */ }}>Feature</button>
+              {dev.name} <button onClick={() => {setFeatured(dev.id)}}>Feature</button>
             </div>
           )
         }
@@ -64,9 +75,8 @@ export default function Programmers() {
           // Ternaries are fantastic to render "one thing or the other" depending on the "truthiness" of something.
           // Pseudo-code: if the currently featured id is truthy render text 1, otherwise render text 2.
           // Replace the hard-coded false with the correct variable.
-          false
-            ? `🎉 Let's celebrate ${getNameOfFeatured()}! 🥳`
-            : 'Pick an awesome programmer'
+          
+          (featured >= 1  ?  `🎉 Let's celebrate ${getNameOfFeatured()}! 🥳` : 'Pick an awesome programmer')  
         }
       </div>
     </div>

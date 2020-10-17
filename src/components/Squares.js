@@ -28,10 +28,10 @@ export default function Squares() {
   const [ squares , setSquares ] = useState(listOfSquareIds);
 
   const [ activeSquare , setActiveSquare ] = useState(null);
-  console.log( "squares" , squares );
-   console.log( "setSquares" , setSquares );
-  console.log( "activeSquare" , activeSquare );
-   console.log( "setActiveSquare" , setActiveSquare );
+  // console.log( "squares" , squares );
+  //  console.log( "setSquares" , setSquares );
+  // console.log( "activeSquare" , activeSquare );
+  //  console.log( "setActiveSquare" , setActiveSquare );
 
 
   const getClassName = id => {
